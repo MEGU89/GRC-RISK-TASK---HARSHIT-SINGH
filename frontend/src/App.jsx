@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import RiskForm from './components/RiskForm.jsx';
 import Dashboard from './components/Dashboard.jsx';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 function App() {
   const [risks, setRisks] = useState([]);

@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, field_validator
 from typing import Optional, List
 import sqlite3
+import os
 from contextlib import contextmanager
 
 app = FastAPI(
@@ -18,9 +19,10 @@ app = FastAPI(
 )
 
 # CORS middleware to allow frontend connections
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
